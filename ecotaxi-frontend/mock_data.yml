@@ -1,0 +1,17 @@
+:drivers:
+  -
+    :name: 'John Jonson'
+    :car: 'taxi'
+    :lic_plate: 'ABC 123'
+
+:users:
+  - 1238487578
+  - 2939829895
+  - 9394988598
+  - 2939405056
+
+:trips_status:
+  - 'open'
+  - 'started'
+  - 'finished'
+  - 'payed'
