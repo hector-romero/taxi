@@ -1,0 +1,24 @@
+<div class="widget-title">
+
+    <h5>Lista de viajes</h5>
+</div>
+<div class="widget-content nopadding">
+    <table class="table table-bordered data-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Hr Inicio</th>
+            <th>Hr Fin</th>
+            <th>Chofer</th>
+            <th>Vehiculo</th>
+            <th>Patente</th>
+            <th>Pasajero</th>
+            <th>Estado</th>
+            <th>Editar</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>

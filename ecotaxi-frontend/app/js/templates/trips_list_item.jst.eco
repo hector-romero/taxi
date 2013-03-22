@@ -1,0 +1,11 @@
+<td class="center">000000000001</td>
+<td class="center">-</td>
+<td class="center">-</td>
+<td class="center">John Johnson</td>
+<td class="center">Taxi</td>
+<td class="center">ABC 123</td>
+<td class="center">1151224324</td>
+<td class="center">No Iniciado</td>
+<td class="center">
+   <button class="btn btn-primary see">Ver</button>
+</td>
