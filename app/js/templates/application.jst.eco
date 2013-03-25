@@ -1,0 +1,44 @@
+<header>
+    <span>Here is the logo</span>
+    <input type="text" placeholder="Search people">
+    <span>Lo de aca tambien va?</span>
+</header>
+
+<content class="menu-open">
+    <div class="menu">
+        <div>Dashboard</div>
+        <div>Config</div>
+        <ul>
+          <li>Usuarios</li>
+          <li>Mercados</li>
+        </ul>
+        <div>Despacho</div>
+        <ul>
+          <li>Recepcion</li>
+          <li>Envio</li>
+        </ul>
+        <div>Choferes</div>
+        <ul>
+          <li>Agregar</li>
+          <li>Listado</li>
+        </ul>
+        <div>Usuarios</div>
+        <ul>
+          <li>Agregar</li>
+          <li>Listado</li>
+        </ul>
+        <div>Empresas</div>
+        <ul>
+          <li>Agregar</li>
+          <li>Listado</li>
+        </ul>
+        <div>Mensajeria</div>
+        <div>Reportes</div>
+
+    </div>
+    <div class="container"></div>
+
+
+
+
+</content>

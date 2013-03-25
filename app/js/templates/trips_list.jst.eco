@@ -2,6 +2,17 @@
 
     <h5>Lista de viajes</h5>
 </div>
-<ul class="itemsContainer">
+<table>
+  <thead>
+    <tr>
+        <td>Pasajero/Telefono</td>
+        <td>Origen/Destino</td>
+        <td></td>
+        <td></td>
+    </tr>
 
-</ul>
+  </thead>
+  <tbody class="itemsContainer">
+
+  </tbody>
+<table>

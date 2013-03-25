@@ -1,5 +1,5 @@
 <% for key, value of @values : %>
- <span class="<%= key %>"><%= value %></span>
+ <td class="<%= key %>"><%= value %></td>
 
 <% end %>
 <!--<td class="center"><%= @id %></td>-->
@@ -10,6 +10,7 @@
 <!--<td class="center"><%= @lic_plate %></td>-->
 <!--<td class="center"><%= @passenger %></td>-->
 <!--<td class="center"><%= @status %></td>-->
-<span class="center">
+<td class="center">
    <button class="btn btn-primary see">Ver</button>
-</span>
+</td>
+

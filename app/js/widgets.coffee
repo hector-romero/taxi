@@ -1,8 +1,8 @@
 #= require 'util'
 
 class TripsListItem extends Backbone.View
-  tagName: 'li'
-  className: 'tripListItem'
+  tagName: 'tr'
+  className: 'listItem tripListItem'
   events:
     "click .see" : "onClickSee"
 
@@ -32,7 +32,7 @@ class TripsListItem extends Backbone.View
 
 class TripsList extends Backbone.View
 
-  className: "widget-box trip-list"
+  className: "listWidget trip-list"
   $itemsContainer: undefined
   itemViews: {}
 
@@ -74,8 +74,6 @@ class TripsList extends Backbone.View
 
   modelAt: (index) ->
     @collection.at index
-
-
 
 # Exports
 window.TripsList = TripsList
