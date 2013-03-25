@@ -1,11 +1,15 @@
-<td class="center">000000000001</td>
-<td class="center">-</td>
-<td class="center">-</td>
-<td class="center">John Johnson</td>
-<td class="center">Taxi</td>
-<td class="center">ABC 123</td>
-<td class="center">1151224324</td>
-<td class="center">No Iniciado</td>
-<td class="center">
+<% for key, value of @values : %>
+ <span class="<%= key %>"><%= value %></span>
+
+<% end %>
+<!--<td class="center"><%= @id %></td>-->
+<!--<td class="center"><%= @start %></td>-->
+<!--<td class="center"><%= @end %></td>-->
+<!--<td class="center"><%= @driver %></td>-->
+<!--<td class="center"><%= @car %></td>-->
+<!--<td class="center"><%= @lic_plate %></td>-->
+<!--<td class="center"><%= @passenger %></td>-->
+<!--<td class="center"><%= @status %></td>-->
+<span class="center">
    <button class="btn btn-primary see">Ver</button>
-</td>
+</span>
