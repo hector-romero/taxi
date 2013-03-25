@@ -75,5 +75,47 @@ class TripsList extends Backbone.View
   modelAt: (index) ->
     @collection.at index
 
+class Menu extends Backbone.View
+  #TODO Allow use of custom functions when clicking on an item (Right now, it'll just change the url)
+  className: 'menu'
+  #Entries is a list of items.
+  # Each item is an objet that can be a submenu or a menu item
+  # Each item contains a string to be show, an if is a menu item
+  # It must contain the url to go (via an a)
+  # if it is a submenu, it must contain a list of items.
+  # EX:
+  # entries = [ {type: 'item', text: 'This is an item', url: '#item'},
+  #             {type: 'submenu', text: 'this is a suvmenu', items: [
+  #                  {type: 'item', text: 'This is 1st subitem', url: '#subitem1'}
+  #                  {type: 'item', text: 'This is 2nd subitem', url: '#subitem2'}
+  #              }]
+  #           ]
+  render: =>
+    @$el.html ''
+    createMenu = (entries = [], $el) ->
+      getItem = (item, isSubmenu = false) ->
+        console.log {item, isSubmenu}
+        $(JST['templates/menu_item'] {item, isSubmenu} )
+      for item in entries
+        console.log item.type
+        if item.type == 'submenu'
+          arg = text: item.text || 'Some text'
+          container = getItem arg, true
+          console.log container.find('.itemsContainer')
+          createMenu(item.items, container.find('.itemsContainer'))
+          $el.append container
+        else
+          arg =
+            url: item.url || 'javascript:void(0)'
+            text: item.text || 'Some text'
+          $el.append getItem arg
+
+    createMenu(@entries, @$el)
+    @$el
+
+  initialize: =>
+    @entries = @options.entries || []
+
 # Exports
 window.TripsList = TripsList
+window.Menu = Menu
