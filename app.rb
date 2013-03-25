@@ -28,6 +28,7 @@ end
 
 
 get '/mock_api/trips', :provides => :json do
+  api_data[:trips][0][:id] = rand()
   {:trips => api_data[:trips]}.to_json
 end
 
@@ -48,13 +49,13 @@ helpers do
     status            = data[:trips_status]
     users             = data[:users]
 
-    rnd = Random.new 4321
+    rnd = Random.new 4321 #To get every time the same random numbers, so the data will remain the same.
 
-    # Generate data contents.
+    # Generate trips
     data[:trips] = (1..MOCK_TRIPS_COUNT).collect do |id|
       trip = {}
       trip[:id]             = id.to_s
-      trip[:start]          = '-'
+      trip[:start]          = rand()  #'-' done
       trip[:end]            = '-'
       driver                = drivers[id % drivers.size]
       trip[:driver]         = driver[:name]
