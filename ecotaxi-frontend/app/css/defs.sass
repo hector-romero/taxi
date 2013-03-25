@@ -1,0 +1,14 @@
+@mixin displayBox
+    display: -webkit-box
+    display: -moz-box
+    display: -ms-box
+    display: box
+@mixin boxFlex($boxFlexValue)
+    -webkit-box-flex: $boxFlexValue
+    -moz-box-flex: $boxFlexValue
+    -ms-box-flex: $boxFlexValue
+    box-flex: $boxFlexValue
+@mixin boxOrient($value) //valye must be either horizontal or vertical
+    -webkit-box-orient: $value
+    -moz-box-orient: $value
+    box-orient: $value
