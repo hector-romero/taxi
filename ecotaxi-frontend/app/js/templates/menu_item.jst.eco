@@ -1,0 +1,11 @@
+<% if @isSubmenu :%>
+      <div class="submenu">
+          <div class="label"><%= @item.text %></div>
+          <div class="itemsContainer"></div>
+      </div>
+<% else: %>
+      <div class="menuItem">
+          <a href="<%= @item.url %>"> <%= @item.text %></a>
+      </div>
+<% end %>
+
