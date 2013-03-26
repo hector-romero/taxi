@@ -22,6 +22,10 @@ $closedMenuWidth: 15px
     -webkit-transition: $property $duration $function
     -moz-transition: $property $duration $function
     transition: $property $duration $function
+@mixin boxSizing($sizing) //border-box content-box inherit
+    box-sizing: $sizing
+    -moz-box-sizing: $sizing
+    -webkit-box-sizing: $sizing
 
 //Frequently used classes... (I also like the denominatio, Frequently Used Properties, so it can be named FUP)
 .displayBox
@@ -34,3 +38,5 @@ $closedMenuWidth: 15px
     @include boxOrient(vertical)
 .boxFlex1
     @include boxFlex(1)
+.boxSizingBorderBox
+    @include boxSizing(border-box)
