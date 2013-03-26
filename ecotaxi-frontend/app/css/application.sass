@@ -1,16 +1,15 @@
-@import 'defs.sass'
-$openMenuWidth: 100px
-
 body
     width: 100%
     height: 100%
 content
-    @include displayBox
-    @include boxOrient(horizontal)
+    //@include displayBox
+    //@include boxOrient(horizontal)
+    @extend .displayBoxHorizontal
     .container
-        @include boxFlex(1)
-    .menu
-        width: auto
+        //@include boxFlex(1)
+        @extend .boxFlex1
+    //.menu
+    //    width: auto
     .container
         padding: 10px
     padding: 10px

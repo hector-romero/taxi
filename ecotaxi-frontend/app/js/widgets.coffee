@@ -37,11 +37,15 @@ class WidgetList extends Backbone.View
   tagName: 'table'
   itemViews: {}
   headers: ['Pasajero/Telefono', 'Origen/Destino','','']
-
+  updateTimeout: null
 
   update: =>
     @collection.fetch success: @loadList
-    setTimeout(@update,2000)
+    @updateTimeout = setTimeout(@update,2000)
+
+  remove: =>
+    super()
+    clearTimeout @updateTimeout
 
   render: =>
     @$el.html JST['templates/widget_list'](headers: @headers)
@@ -82,7 +86,13 @@ class WidgetList extends Backbone.View
 #Menu Widget
 class Menu extends Backbone.View
   #TODO Allow use of custom functions when clicking on an item (Right now, it'll just change the url)
+  events:
+    'click .opener' : 'show'
+
   className: 'menu'
+  autohide: true
+  autohideTime: 20000
+  autohideTimeout: null
   #Entries is a list of items.
   # Each item is an objet that can be a submenu or a menu item
   # Each item contains a string to be show, and if it is a menu item
@@ -96,7 +106,7 @@ class Menu extends Backbone.View
   #              }]
   #           ]
   render: =>
-    @$el.html ''
+    @$el.html JST['templates/menu']()
     createMenu = (entries = [], $el) ->
       getItem = (item, isSubmenu = false) ->
         $(JST['templates/menu_item'] {item, isSubmenu} )
@@ -113,8 +123,22 @@ class Menu extends Backbone.View
             text: item.text || 'Some text'
           $el.append getItem arg
 
-    createMenu(@entries, @$el)
+    createMenu(@entries, @$('.items'))
     @$el
+
+  show: =>
+    #@$('.opener').hide()
+    #@$('.items').show 'slow'
+    @$el.removeClass('closed')
+    clearTimeout @
+    @autohideTimeout = setTimeout @hide, @autohideTime
+
+
+  hide: =>
+    @$el.addClass('closed')
+    #@$('.items').hide 'slow'
+    #@$('.opener').show()
+
 
   initialize: =>
     @entries = @options.entries || []

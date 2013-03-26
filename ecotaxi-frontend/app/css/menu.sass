@@ -1,0 +1,23 @@
+.menu, .menu .items, .menu .opener
+    @include transition(all,300ms,linear)
+.menu
+    //@include displayBox
+    //@include boxOrient(horizontal)
+    @extend .displayBoxHorizontal
+
+    .items, .opener
+        position: relative
+        overflow: hidden
+    .opener
+        background-color: red
+    width: $openMenuWidth
+    .items
+        width: $openMenuWidth
+    .opener
+        widht: 0px
+.menu.closed
+    width: $closedMenuWidth
+    .items
+        width: 0px
+    .opener
+        width: $closedMenuWidth

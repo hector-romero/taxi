@@ -8,6 +8,7 @@ class TripsReception extends Backbone.View
 
   remove: =>
     console.log 'removed reception'
+    @list.remove()
     super
 
   render: =>
@@ -22,7 +23,7 @@ class TripsDelivery extends Backbone.View
     super
 
   render: =>
-    @$el.html '<h1>ESTA PAGINAAA</h1>'
+    @$el.html '<h1>ESTA ES LA PAGINA DE ENVIO</h1>'
 
 
 #Exports
