@@ -15,8 +15,8 @@ class Applicaction extends Backbone.View
       ]
     }
     {type: 'submenu',  text: 'Despacho',   items:[
-        {type: 'item', text: 'Recepcion',  url: '#'}
-        {type: 'item', text: 'Envío',      url: '#'}
+        {type: 'item', text: 'Recepcion',  url: '#despacho_recepcion'}
+        {type: 'item', text: 'Envío',      url: '#despacho_envio'}
       ]
     }
     {type: 'submenu',  text: 'Choferes',   items:[
@@ -50,19 +50,21 @@ class Applicaction extends Backbone.View
     @$el.html JST['templates/application']()
     @menu = new Menu entries: @menuEntries, el: @$(".menu")
     @menu.render()
+    @menu.show()
+    window.menu = @menu
     @$el
 
 appOnLoad = ->
   App = new Applicaction el: $("body")[0]
   pages =
     'default': ->
-      App.navigator.navigateToHash 'lala'
+      App.navigator.navigateToHash 'despacho_recepcion'
       {avoidActions: true}
-    'lala': ->
+    'despacho_recepcion': ->
       view = new TripsReception()
       #@$(".container").append view.$el
 #      view.render()
-    'lala2': ->
+    'despacho_envio': ->
       view = new TripsDelivery()
       #@$(".container").append view.$el
 #      view.render()

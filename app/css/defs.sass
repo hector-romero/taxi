@@ -1,3 +1,9 @@
+//VARS
+$openMenuWidth: 100px
+$closedMenuWidth: 15px
+
+
+//Some helper mixings
 @mixin displayBox
     display: -webkit-box
     display: -moz-box
@@ -12,3 +18,19 @@
     -webkit-box-orient: $value
     -moz-box-orient: $value
     box-orient: $value
+@mixin transition($property, $duration, $function)
+    -webkit-transition: $property $duration $function
+    -moz-transition: $property $duration $function
+    transition: $property $duration $function
+
+//Frequently used classes... (I also like the denominatio, Frequently Used Properties, so it can be named FUP)
+.displayBox
+    @include displayBox
+.displayBoxHorizontal
+    @extend .displayBox
+    @include boxOrient(horizontal)
+.displayBoxVertical
+    @extend .displayBox
+    @include boxOrient(vertical)
+.boxFlex1
+    @include boxFlex(1)
