@@ -1,8 +1,9 @@
 #= require 'util'
 
-class TripsListItem extends Backbone.View
+class WidgetListItem extends Backbone.View
   tagName: 'tr'
-  className: 'listItem tripListItem'
+  className: 'widgetListItem'
+  shownAttrs: ['id','start','end','driver','car', 'lic_plate', 'passenger', 'status']
   events:
     "click .see" : "onClickSee"
 
@@ -25,23 +26,25 @@ class TripsListItem extends Backbone.View
 #    console.log 'removed'
 
   render: =>
-    attrs = ['id','start','end','driver','car', 'lic_plate', 'passenger', 'status']
-    @$el.html JST['templates/trips_list_item'] values: _.subHash @model.attributes, attrs
+    @$el.html JST['templates/widget_list_item'] values: _.subHash @model.attributes, @shownAttrs
     @$el.attr 'id', @model.get 'id'
     @$el
 
-class TripsList extends Backbone.View
+class WidgetList extends Backbone.View
 
-  className: "listWidget trip-list"
+  className: "widgetList"
   $itemsContainer: undefined
+  tagName: 'table'
   itemViews: {}
+  headers: ['Pasajero/Telefono', 'Origen/Destino','','']
+
 
   update: =>
     @collection.fetch success: @loadList
     setTimeout(@update,2000)
 
   render: =>
-    @$el.html JST['templates/trips_list']()
+    @$el.html JST['templates/widget_list'](headers: @headers)
     @$itemsContainer = @$(".itemsContainer")
     @update()
     @$el
@@ -65,7 +68,7 @@ class TripsList extends Backbone.View
   itemViewAt: (index) ->
     model =  @modelAt index
     unless @itemViews[model.id]
-      view = new TripsListItem model: model
+      view = new WidgetListItem model: model
       @itemViews[model.id] = view
       view.on 'remove', => delete @itemViews[model.id]
       view.render()
@@ -75,17 +78,19 @@ class TripsList extends Backbone.View
   modelAt: (index) ->
     @collection.at index
 
+
+#Menu Widget
 class Menu extends Backbone.View
   #TODO Allow use of custom functions when clicking on an item (Right now, it'll just change the url)
   className: 'menu'
   #Entries is a list of items.
   # Each item is an objet that can be a submenu or a menu item
-  # Each item contains a string to be show, an if is a menu item
-  # It must contain the url to go (via an a)
+  # Each item contains a string to be show, and if it is a menu item
+  # It must contain the url to go (the url is set to an anchor)
   # if it is a submenu, it must contain a list of items.
   # EX:
   # entries = [ {type: 'item', text: 'This is an item', url: '#item'},
-  #             {type: 'submenu', text: 'this is a suvmenu', items: [
+  #             {type: 'submenu', text: 'this is a submenu', items: [
   #                  {type: 'item', text: 'This is 1st subitem', url: '#subitem1'}
   #                  {type: 'item', text: 'This is 2nd subitem', url: '#subitem2'}
   #              }]
@@ -94,10 +99,8 @@ class Menu extends Backbone.View
     @$el.html ''
     createMenu = (entries = [], $el) ->
       getItem = (item, isSubmenu = false) ->
-        console.log {item, isSubmenu}
         $(JST['templates/menu_item'] {item, isSubmenu} )
       for item in entries
-        console.log item.type
         if item.type == 'submenu'
           arg = text: item.text || 'Some text'
           container = getItem arg, true
@@ -117,5 +120,6 @@ class Menu extends Backbone.View
     @entries = @options.entries || []
 
 # Exports
-window.TripsList = TripsList
+window.WidgetList = WidgetList
+window.WidgetListItem = WidgetListItem
 window.Menu = Menu
