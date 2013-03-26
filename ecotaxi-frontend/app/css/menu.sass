@@ -9,15 +9,22 @@
         position: relative
         overflow: hidden
     .opener
-        background-color: red
+        background:
+            image: url('rarrow.png')
+            position: center
+            repeat: no-repeat
+
     width: $openMenuWidth
     .items
         width: $openMenuWidth
+        margin-left: 10px
     .opener
         widht: 0px
 .menu.closed
     width: $closedMenuWidth
     .items
         width: 0px
+        margin-left: 0px
+        margin-left: 0px
     .opener
         width: $closedMenuWidth
