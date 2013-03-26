@@ -4,7 +4,7 @@
 
 #View to show the list received trips from EcoTaxi to CityTax(or another operator)
 #TODO Stop timeouts when the view is removed
-class TripsReception extends Backbone.View
+class TripsReception extends DualPanelView
 
   remove: =>
     console.log 'removed reception'
@@ -12,18 +12,22 @@ class TripsReception extends Backbone.View
     super
 
   render: =>
+    super
     @list = new WidgetList collection: new Trips()
-    @$el.append @list.$el
+    #@$el.append @list.$el
+    @setOnFirstPanel @list.$el
     @list.render()
 
 #View to show and send trips to eco-taxi
-class TripsDelivery extends Backbone.View
+class TripsDelivery extends DualPanelView
   remove: =>
     console.log 'removed delivery'
     super
 
   render: =>
-    @$el.html '<h1>ESTA ES LA PAGINA DE ENVIO</h1>'
+    super
+    @setOnFirstPanel '<h1>ESTA ES LA PAGINA DE ENVIO</h1>'
+    @$el
 
 
 #Exports

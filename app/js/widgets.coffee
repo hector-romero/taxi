@@ -143,7 +143,22 @@ class Menu extends Backbone.View
   initialize: =>
     @entries = @options.entries || []
 
+
+class DualPanelView extends Backbone.View
+  className: 'dualPanelView'
+
+  setOnFirstPanel: ($el) =>
+    @$(".panel1").html $el
+
+  setOnSecondPanel:($el) =>
+    @$(".panel2").html $el
+
+  render: =>
+    @$el.html JST['templates/dual_panel_view']()
+    @$el
+
 # Exports
 window.WidgetList = WidgetList
 window.WidgetListItem = WidgetListItem
+window.DualPanelView = DualPanelView
 window.Menu = Menu
