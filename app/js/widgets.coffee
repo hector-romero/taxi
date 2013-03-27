@@ -1,18 +1,10 @@
 #= require 'util'
 
 class WidgetListItem extends Backbone.View
-  tagName: 'tr'
+  tagName: 'li'
   className: 'widgetListItem'
-  shownAttrs: ['id','start','end','driver','car', 'lic_plate', 'passenger', 'status']
-  events:
-    "click .see" : "onClickSee"
-
-  onClickSee: ->
-    alert "Hisciste click en ver"
 
   update: (changed) =>
-#    console.log changed
-    #@$el.html JST['templates/trips_list_item'](@model.attributes)
     for key, value of changed
       @$(".#{key}").html value
 
@@ -23,21 +15,25 @@ class WidgetListItem extends Backbone.View
   remove: =>
     super
     @trigger 'remove'
-#    console.log 'removed'
+
+  renderParams: ->
+    @model.attributes
 
   render: =>
-    @$el.html JST['templates/widget_list_item'] values: _.subHash @model.attributes, @shownAttrs
+    @$el.html JST['templates/widget_list_item'] values: @renderParams()
     @$el.attr 'id', @model.get 'id'
     @$el
 
 class WidgetList extends Backbone.View
 
   className: "widgetList"
-  $itemsContainer: undefined
-  tagName: 'table'
   itemViews: {}
-  headers: ['Pasajero/Telefono', 'Origen/Destino','','']
-  updateTimeout: null
+  $itemsContainer: undefined
+  updateTimeout: undefined
+  listItemView: WidgetListItem
+
+  headHtml: ->
+    'this is the list head'
 
   update: =>
     @collection.fetch success: @loadList
@@ -48,23 +44,22 @@ class WidgetList extends Backbone.View
     clearTimeout @updateTimeout
 
   render: =>
-    @$el.html JST['templates/widget_list'](headers: @headers)
+    @$el.html JST['templates/widget_list'](head: @headHtml())
     @$itemsContainer = @$(".itemsContainer")
     @update()
     @$el
 
   renderEmptyList: =>
-    @$itemsContainer.html 'No Hay nada'
+    @$itemsContainer.html 'There is no items to show'
 
   loadList: =>
     count = @itemCount()
-    #@$itemsContainer.html ''
+    @$itemsContainer.html ''
     return @renderEmptyList() unless count
     for i in [0..count - 1]
       item = @itemViewAt i
-      if item and !(@$(item.$el)[0])
-        @$itemsContainer.append item.$el
-#        item.delegateEvents()
+      @$itemsContainer.append item.$el
+      item.delegateEvents()
 
   itemCount: ->
     @collection.length
@@ -72,7 +67,7 @@ class WidgetList extends Backbone.View
   itemViewAt: (index) ->
     model =  @modelAt index
     unless @itemViews[model.id]
-      view = new WidgetListItem model: model
+      view = new @listItemView model: model
       @itemViews[model.id] = view
       view.on 'remove', => delete @itemViews[model.id]
       view.render()
@@ -92,7 +87,7 @@ class Menu extends Backbone.View
   className: 'menu'
   autohide: true
   autohideTime: 20000
-  autohideTimeout: null
+  autohideTimeout: undefined
   #Entries is a list of items.
   # Each item is an objet that can be a submenu or a menu item
   # Each item contains a string to be show, and if it is a menu item
@@ -147,11 +142,18 @@ class Menu extends Backbone.View
 class DualPanelView extends Backbone.View
   className: 'dualPanelView'
 
-  setOnFirstPanel: ($el) =>
-    @$(".panel1").html $el
+  firstPanelView: undefined
+  secondPanelView: undefined
 
-  setOnSecondPanel:($el) =>
+  setOnFirstPanel: ($el, view) =>
+    @firstPanelView.remove() if @firstPanelView
+    @$(".panel1").html $el
+    @firstPanelView = view
+
+  setOnSecondPanel:($el, view) =>
+    @secondPanelView.remove() if @secondPanelView
     @$(".panel2").html $el
+    @secondPanelView = view
 
   render: =>
     @$el.html JST['templates/dual_panel_view']()
