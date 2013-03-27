@@ -31,6 +31,7 @@ class WidgetList extends Backbone.View
   $itemsContainer: undefined
   updateTimeout: undefined
   listItemView: WidgetListItem
+  listTitle: 'Title'
 
   headHtml: ->
     'this is the list head'
@@ -44,7 +45,7 @@ class WidgetList extends Backbone.View
     clearTimeout @updateTimeout
 
   render: =>
-    @$el.html JST['templates/widget_list'](head: @headHtml())
+    @$el.html JST['templates/widget_list'](head: @headHtml(), title: @listTitle)
     @$itemsContainer = @$(".itemsContainer")
     @update()
     @$el

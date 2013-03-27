@@ -1,6 +1,9 @@
 .widgetList
     width: 100%
-    .widgetListItem
+    .title
+        font-size: 1.5em
+        font-weight: bold
+    .widgetListItem, .head
         border: 1px solid black
         margin: 2px
         overflow:  hidden
@@ -15,18 +18,20 @@
 
 //Styles for Reception Trips Lists
 .tripsReceptionList
-    .widgetListItem
+    font-weight: bold
+    .widgetListItem, .head
         @extend .displayBoxHorizontal
         width: 100%
     .itemField
         width:  15%
         line-height: 2
+    .itemField.passenger, .itemField.trip
+        line-height: 1.2
+        font-size: .85em
     .itemField.passenger
         width: 30%
-        line-height: 1
     .itemField.trip
         width:  40%
-        line-height: 1
         text-align: left
 
 
