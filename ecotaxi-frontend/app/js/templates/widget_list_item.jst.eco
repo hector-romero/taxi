@@ -1,16 +1,3 @@
 <% for key, value of @values : %>
- <td class="<%= key %>"><%= value %></td>
-
+   <span class="<%= key %>"><%- if (typeof value) == 'function' then  value() else value %></span>
 <% end %>
-<!--<td class="center"><%= @id %></td>-->
-<!--<td class="center"><%= @start %></td>-->
-<!--<td class="center"><%= @end %></td>-->
-<!--<td class="center"><%= @driver %></td>-->
-<!--<td class="center"><%= @car %></td>-->
-<!--<td class="center"><%= @lic_plate %></td>-->
-<!--<td class="center"><%= @passenger %></td>-->
-<!--<td class="center"><%= @status %></td>-->
-<td class="center">
-   <button class="btn btn-primary see">Ver</button>
-</td>
-

@@ -1,11 +1,4 @@
-  <thead>
-    <tr>
-      <% for header in @headers : %>
-        <td><%= header %></td>
-      <% end %>
-    </tr>
-
-  </thead>
-  <tbody class="itemsContainer">
-
-  </tbody>
+<div class="head">
+      <%- @head || ''%>
+</div>
+<ul class="itemsContainer"></ul>
