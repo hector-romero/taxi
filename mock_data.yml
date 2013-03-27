@@ -5,13 +5,30 @@
     :lic_plate: 'ABC 123'
 
 :users:
-  - 1238487578
-  - 2939829895
-  - 9394988598
-  - 2939405056
+  -
+    :name:  'Juan Perez'
+    :phone: '15-0000-0000'
+  -
+    :name: 'Pedro Fulano'
+    :phone: '15-1111-1111'
+  -
+    :name: 'Luis Mengano'
+    :phone: '15-2222-2222'
 
 :trips_status:
   - 'open'
   - 'started'
   - 'finished'
   - 'payed'
+
+
+:timers:
+  - '0:25'
+  - '2:37'
+  - '4.59'
+  - '1:22'
+  - '0:59'
+
+:places:
+ - 'Av. Rivadavia 2343, Flores'
+ - 'Junin 1622, Recoleta'
