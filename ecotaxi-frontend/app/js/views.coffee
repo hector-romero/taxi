@@ -1,6 +1,7 @@
 #= require 'vendor_all'
 #= require 'models'
 #= require 'widgets'
+#= require 'lists'
 
 #View to show the list received trips from EcoTaxi to CityTax(or another operator)
 #TODO Stop timeouts when the view is removed
@@ -13,9 +14,8 @@ class TripsReception extends DualPanelView
 
   render: =>
     super
-    @list = new WidgetList collection: new Trips()
-    #@$el.append @list.$el
-    @setOnFirstPanel @list.$el
+    @list = TripsLists.getReceptionListMyTrips()
+    @setOnFirstPanel @list.$el, @list
     @list.render()
 
 #View to show and send trips to eco-taxi

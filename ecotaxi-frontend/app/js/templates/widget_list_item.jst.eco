@@ -1,3 +1,5 @@
 <% for key, value of @values : %>
-   <span class="<%= key %>"><%- if (typeof value) == 'function' then  value() else value %></span>
+   <div class="itemField <%= key %>">
+      <%- if (typeof value) == 'function' then  value() else value %>
+   </div>
 <% end %>

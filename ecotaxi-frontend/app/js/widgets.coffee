@@ -37,7 +37,7 @@ class WidgetList extends Backbone.View
 
   update: =>
     @collection.fetch success: @loadList
-    @updateTimeout = setTimeout(@update,2000)
+#    @updateTimeout = setTimeout(@update,2000)
 
   remove: =>
     super()

@@ -45,9 +45,9 @@ helpers do
   def generate_api_data
     data = YAML.load File.read('mock_data.yml')
 
-    drivers           = data[:drivers]
-    status            = data[:trips_status]
     users             = data[:users]
+    places            = data[:places]
+    timers            = data[:timers]
 
     rnd = Random.new 4321 #To get every time the same random numbers, so the data will remain the same.
 
@@ -55,15 +55,13 @@ helpers do
     data[:trips] = (1..MOCK_TRIPS_COUNT).collect do |id|
       trip = {}
       trip[:id]             = id.to_s
-      trip[:start]          = rand()  #'-' done
-      trip[:end]            = '-'
-      driver                = drivers[id % drivers.size]
-      trip[:driver]         = driver[:name]
-      trip[:car]            = driver[:car]
-      trip[:lic_plate]      = driver[:lic_plate]
-      trip[:passenger]      = users.sample random: rnd
-      trip[:status]         = status.sample random: rnd
-
+      user = users.sample random: rnd
+      trip[:passenger]      = user[:name] #users.sample random: rnd
+      trip[:phone]          = user[:phone]
+      from_to               = places.sample 2, random: rnd
+      trip[:from]           = from_to[0]
+      trip[:to]             = from_to[1]
+      trip[:timer]          = timers.sample random: rnd #timers[id % timers.size]
       trip
     end
 
