@@ -1,5 +1,6 @@
 #= require 'widgets'
 #= require 'models'
+#= require 'trip_detail'
 
 TripsLists = {}
 #########################################
@@ -12,7 +13,10 @@ class TripsReceptionListItem extends WidgetListItem
   buttonText: 'Button'
 
   openModel: =>
-    console.log @model
+    detail = new TripDetail model: @model
+    detail.render()
+    @options.showView detail.$el,detail
+
   button: ->
     "<button>Button</button>"
 
@@ -34,6 +38,15 @@ class TripsReceptionList extends WidgetList
         'button': ''
     JST['templates/widget_list_item'] values: head
 
+  itemViewAt: (index) ->
+    model =  @modelAt index
+    unless @itemViews[model.id]
+      view = new @listItemView model: model, showView: @options.showView
+      @itemViews[model.id] = view
+      view.on 'remove', => delete @itemViews[model.id]
+      view.render()
+    @itemViews[model.id]
+
 ####################
 # Available Trips
 class TripsReceptionListItemAvailableTrips extends TripsReceptionListItem
@@ -42,6 +55,7 @@ class TripsReceptionListItemAvailableTrips extends TripsReceptionListItem
 class TripsReceptionListAvailableTrips extends TripsReceptionList
   listItemView: TripsReceptionListItemAvailableTrips
   listTitle: 'PENDIENTES'
+  className: "widgetList tripsReceptionList availableTripsList"
 
 ###################
 # My trips
@@ -52,14 +66,15 @@ class TripsReceptionListItemMyTrips extends TripsReceptionListItem
 class TripsReceptionListMyTrips extends TripsReceptionList
   listItemView: TripsReceptionListItemMyTrips
   listTitle: 'MIS DESPACHOS'
+  className: "widgetList tripsReceptionList myTripsList"
 
 ##################
 #TODO Specify the correct collections
-TripsLists.getReceptionListMyTrips = ->
-  new TripsReceptionListMyTrips collection: new Trips()
+TripsLists.getReceptionListMyTrips = (showView = ->null)->
+  new TripsReceptionListMyTrips collection: new Trips(), showView: showView
 
-TripsLists.getReceptionListAvailableTrips = ->
-  new TripsReceptionListAvailableTrips collection: new Trips()
+TripsLists.getReceptionListAvailableTrips = (showView =  ->null) ->
+  new TripsReceptionListAvailableTrips collection: new Trips(), showView: showView
 
 #Exports
 window.TripsLists = TripsLists

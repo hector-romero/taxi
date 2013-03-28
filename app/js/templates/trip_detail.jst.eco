@@ -1,0 +1,65 @@
+<div class="head">
+    <div class="tripID">Viaje ID: <span><%= @trip.id %></span></div>
+    <div class="timer"><%= @trip.timer %></div>
+</div>
+
+<div class="section">
+    <div class="title">Detalles</div>
+    <div class="field left">
+        <div><span class="label">Pedido:</span> <span class="value"></span></div>
+        <div><span class="label">Inicio:</span> <span class="value"></span></div>
+        <div><span class="label">Finalizacion:</span> <span class="value"></span></div>
+    </div>
+    <div class="field right">
+        <div><span class="label">Tiempo de Asignacion:</span> <span class="value"></span></div>
+        <div><span class="label">Tiempo de Llegada:</span> <span class="value"></span></div>
+        <div><span class="label">Tiempo de Viaje:</span> <span class="value"></span></div>
+    </div>
+    <div class="separator"></div>
+    <div class="field">
+        <span class="label">Origen:</span> <span class="value"><%= @trip.from %></span>
+    </div>
+    <div class="field">
+        <span class="label">Destino:</span> <span class="value"><%= @trip.to %></span>
+    </div>
+    <div class="field">
+        <span class="label">Opciones:</span> <span class="value"></span>
+    </div>
+    <div class="separator"></div>
+    <div class="field">
+        <span class="label">Informacion adicional:</span> <span class="value"></span>
+    </div>
+    <div class="separator"></div>
+</div>
+
+
+<div class="section">
+    <div class="title">Mapa</div>
+    <div class="mapsContainer">
+    </div>
+    <div class="separator"></div>
+</div>
+
+<div class="section doubleSection">
+    <div class="subsection">
+        <div class="title">Pasajero</div>
+        <div class="field">
+                <span class="label">Nombre:</span> <span class="value"><%= @trip.passenger %></span>
+            </div>
+            <div class="field">
+                <span class="label">Telefono:</span> <span class="value"><%= @trip.phone %></span>
+            </div>
+            <div class="field">
+                <span class="label">Empresa:</span> <span class="value"></span>
+            </div>
+        <div class="separator"></div>
+    </div>
+</div>
+
+
+<div>
+
+    <button>Confirmar chofer</button>
+    <button>Volver</button>
+    <div style="clear: both"></div>
+</div>

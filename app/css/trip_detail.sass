@@ -1,0 +1,48 @@
+@import 'defs.sass'
+
+.tripDetail
+    .head
+        @extend .displayBoxHorizontal
+        border: 1px solid black
+        font-weight: bold
+        font-size: 1.6em
+        padding: 5px
+        .tripID
+            line-height: 1.6
+            @extend .boxFlex1
+        .timer
+            text-align: left
+            font-size: 1.3em
+    .section
+        margin-top: 10px
+        .title
+            font-size: 1.3em
+            font-weight: bold
+            border-bottom: 1px solid
+            margin-bottom: 10px
+        .field
+            //float: left
+            font-size: .9em
+            .label
+                font-weight: bold
+        .field.left
+            float: left
+            width:  60%
+        .field.right
+            float: right
+            //widht: auto
+            max-width:  40%
+    .separator
+        padding: 5px
+        clear: both
+    .doubleSection
+        @extend .displayBoxHorizontal
+    .subsection
+        width: 50%
+        @extend .boxSizingBorderBox
+    .mapsContainer
+        height: 120px
+        background:
+            image: url('map.gif')
+            position: center
+            size: 100% auto

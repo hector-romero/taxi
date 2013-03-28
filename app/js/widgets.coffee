@@ -38,7 +38,7 @@ class WidgetList extends Backbone.View
 
   update: =>
     @collection.fetch success: @loadList
-    @updateTimeout = setTimeout(@update,2000)
+#    @updateTimeout = setTimeout(@update,2000)
 
   remove: =>
     super()
@@ -156,20 +156,20 @@ class DualPanelView extends Backbone.View
 
   #ADDs a view to the end of seconde panel
   addToSecondPanel: ($el, view)->
-    @secondPanelViews.push view
+    @secondPanelViews.push view if view
     @$(".panel2").append $el
 
   #Add the view to the first panel removing all other views
   setOnFirstPanel: ($el, view) =>
     @firstPanelViews.forEach (v) -> v.remove() if v.remove
     @firstPanelViews = []
-    #@$(".panel1").html ''
+    @$(".panel1").html ''
     @addToFirstPanel $el,view
 
   setOnSecondPanel:($el, view) =>
     @secondPanelViews.forEach (v) -> v.remove() if v.remove
     @secondPanelViews = []
-    #@$(".panel2").html ''
+    @$(".panel2").html ''
     @addToSecondPanel $el,view
 
   render: =>
