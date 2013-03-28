@@ -15,11 +15,10 @@ class TripsReception extends DualPanelView
 
   render: =>
     super
-    @listMyTrips = TripsLists.getReceptionListMyTrips()
+    @listMyTrips = TripsLists.getReceptionListMyTrips @setOnSecondPanel
     @setOnFirstPanel @listMyTrips.$el, @listMyTrips
     @listMyTrips.render()
-
-    @listAvailableTrips = TripsLists.getReceptionListAvailableTrips()
+    @listAvailableTrips = TripsLists.getReceptionListAvailableTrips @setOnSecondPanel
     @addToFirstPanel @listAvailableTrips.$el, @listAvailableTrips
     @listAvailableTrips.render()
     window.listMyTrips =  @listMyTrips
