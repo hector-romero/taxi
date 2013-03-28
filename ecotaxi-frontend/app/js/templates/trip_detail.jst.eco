@@ -59,7 +59,7 @@
 
 <div>
 
-    <button>Confirmar chofer</button>
-    <button>Volver</button>
+    <button class="choose">Confirmar chofer</button>
+    <button class="cancel">Volver</button>
     <div style="clear: both"></div>
 </div>

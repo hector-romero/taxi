@@ -1,5 +1,5 @@
 <header>
-    <span>Here is the logo</span>
+    <img class="logo" src="/assets/logo.png">
     <input type="text" placeholder="Search people">
     <span>Lo de aca tambien va?</span>
 </header>
