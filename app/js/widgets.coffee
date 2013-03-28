@@ -21,13 +21,13 @@ class WidgetListItem extends Backbone.View
 
   render: =>
     @$el.html JST['templates/widget_list_item'] values: @renderParams()
-    @$el.attr 'id', @model.get 'id'
+#    @$el.attr 'id', @model.get 'id'
     @$el
 
 class WidgetList extends Backbone.View
 
   className: "widgetList"
-  itemViews: {}
+  itemViews: undefined
   $itemsContainer: undefined
   updateTimeout: undefined
   listItemView: WidgetListItem
@@ -38,7 +38,7 @@ class WidgetList extends Backbone.View
 
   update: =>
     @collection.fetch success: @loadList
-#    @updateTimeout = setTimeout(@update,2000)
+    @updateTimeout = setTimeout(@update,2000)
 
   remove: =>
     super()
@@ -78,6 +78,8 @@ class WidgetList extends Backbone.View
   modelAt: (index) ->
     @collection.at index
 
+  initialize: ->
+    @itemViews = {}
 
 #Menu Widget
 class Menu extends Backbone.View
@@ -140,25 +142,43 @@ class Menu extends Backbone.View
     @entries = @options.entries || []
 
 
+#TODO I don't like at all this implementation, but I run out of ideas for it.
 class DualPanelView extends Backbone.View
   className: 'dualPanelView'
 
-  firstPanelView: undefined
-  secondPanelView: undefined
+  firstPanelViews: undefined
+  secondPanelViews: undefined
 
+  #ADDs a view to the end of first panel
+  addToFirstPanel: ($el, view)->
+    @firstPanelViews.push view if view
+    @$(".panel1").append $el
+
+  #ADDs a view to the end of seconde panel
+  addToSecondPanel: ($el, view)->
+    @secondPanelViews.push view
+    @$(".panel2").append $el
+
+  #Add the view to the first panel removing all other views
   setOnFirstPanel: ($el, view) =>
-    @firstPanelView.remove() if @firstPanelView
-    @$(".panel1").html $el
-    @firstPanelView = view
+    @firstPanelViews.forEach (v) -> v.remove() if v.remove
+    @firstPanelViews = []
+    #@$(".panel1").html ''
+    @addToFirstPanel $el,view
 
   setOnSecondPanel:($el, view) =>
-    @secondPanelView.remove() if @secondPanelView
-    @$(".panel2").html $el
-    @secondPanelView = view
+    @secondPanelViews.forEach (v) -> v.remove() if v.remove
+    @secondPanelViews = []
+    #@$(".panel2").html ''
+    @addToSecondPanel $el,view
 
   render: =>
     @$el.html JST['templates/dual_panel_view']()
     @$el
+
+  initialize: ->
+    @firstPanelViews = []
+    @secondPanelViews = []
 
 # Exports
 window.WidgetList = WidgetList
