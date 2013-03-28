@@ -39,7 +39,7 @@ class TripsReceptionList extends WidgetList
 class TripsReceptionListItemAvailableTrips extends TripsReceptionListItem
   button: -> "<button>Reservar</button>"
 
-class TripsReceptionListAvailbleTrips extends TripsReceptionList
+class TripsReceptionListAvailableTrips extends TripsReceptionList
   listItemView: TripsReceptionListItemAvailableTrips
   listTitle: 'PENDIENTES'
 
@@ -59,7 +59,7 @@ TripsLists.getReceptionListMyTrips = ->
   new TripsReceptionListMyTrips collection: new Trips()
 
 TripsLists.getReceptionListAvailableTrips = ->
-  new TripsReceptionListMyTrips collection: new Trips()
+  new TripsReceptionListAvailableTrips collection: new Trips()
 
 #Exports
 window.TripsLists = TripsLists

@@ -9,14 +9,21 @@ class TripsReception extends DualPanelView
 
   remove: =>
     console.log 'removed reception'
-    @list.remove()
+    @listMyTrips.remove()
+    @listAvailableTrips.remove()
     super
 
   render: =>
     super
-    @list = TripsLists.getReceptionListMyTrips()
-    @setOnFirstPanel @list.$el, @list
-    @list.render()
+    @listMyTrips = TripsLists.getReceptionListMyTrips()
+    @setOnFirstPanel @listMyTrips.$el, @listMyTrips
+    @listMyTrips.render()
+
+    @listAvailableTrips = TripsLists.getReceptionListAvailableTrips()
+    @addToFirstPanel @listAvailableTrips.$el, @listAvailableTrips
+    @listAvailableTrips.render()
+    window.listMyTrips =  @listMyTrips
+    window.listAvailableTrips= @listAvailableTrips
 
 #View to show and send trips to eco-taxi
 class TripsDelivery extends DualPanelView
