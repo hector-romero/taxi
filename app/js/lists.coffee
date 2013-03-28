@@ -50,7 +50,7 @@ class TripsReceptionList extends WidgetList
 ####################
 # Available Trips
 class TripsReceptionListItemAvailableTrips extends TripsReceptionListItem
-  button: -> "<button>Reservar</button>"
+  button: -> "<button class='choose'>Reservar</button>"
 
 class TripsReceptionListAvailableTrips extends TripsReceptionList
   listItemView: TripsReceptionListItemAvailableTrips
@@ -60,7 +60,7 @@ class TripsReceptionListAvailableTrips extends TripsReceptionList
 ###################
 # My trips
 class TripsReceptionListItemMyTrips extends TripsReceptionListItem
-  button: -> "<button>Cancelar</button>"
+  button: -> "<button class='cancel'>Cancelar</button>"
 
 
 class TripsReceptionListMyTrips extends TripsReceptionList
